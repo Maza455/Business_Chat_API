@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use(
-    express.static('./static/index.html'),
+    express.static('./static'),
     express.json(),
     express.urlencoded({
         extended: true,
@@ -35,9 +35,9 @@ app.use(
     cookieParser(),
     cors()
 )
-// app.get('^/$|/endmoduleproject_connection', (req, res) => {
-//     res.status(200).sendFile(path.join(__dirname, './static/html/index.html'))
-// })
+app.get('^/$|/endmoduleproject_connection', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, './static/index.html'))
+})
 
 app.use(express.static('static'))
 

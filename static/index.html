@@ -31,7 +31,7 @@
             const businessName = document.getElementById('businessName').value;
             const contactInfo = document.getElementById('contactInfo').value;
 
-            const response = await fetch('http://localhost:3000/api/onboard', {
+            const response = await fetch('', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ businessName, contactInfo })
@@ -45,7 +45,7 @@
             const recipientId = document.getElementById('recipientId').value;
             const message = document.getElementById('message').value;
 
-            const response = await fetch('http://localhost:3000/api/send-message', {
+            const response = await fetch('', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ recipientId, message })
