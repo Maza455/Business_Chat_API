@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayoba Business Chat</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 50%; margin: auto; }
+        input, button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ayoba Business Chat</h1>
+        <h2>Onboard Business</h2>
+        <input type="text" id="businessName" placeholder="Business Name" required />
+        <input type="text" id="contactInfo" placeholder="Contact Info" required />
+        <button onclick="onboardBusiness()">Onboard</button>
+
+        <h2>Send Message</h2>
+        <input type="text" id="recipientId" placeholder="Recipient ID" required />
+        <input type="text" id="message" placeholder="Message" required />
+        <button onclick="sendMessage()">Send Message</button>
+
+        <div id="response"></div>
+    </div>
+
+    <script>
+        async function onboardBusiness() {
+            const businessName = document.getElementById('businessName').value;
+            const contactInfo = document.getElementById('contactInfo').value;
+
+            const response = await fetch('http://localhost:3000/api/onboard', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ businessName, contactInfo })
+            });
+
+            const data = await response.json();
+            document.getElementById('response').innerText = JSON.stringify(data);
+        }
+
+        async function sendMessage() {
+            const recipientId = document.getElementById('recipientId').value;
+            const message = document.getElementById('message').value;
+
+            const response = await fetch('http://localhost:3000/api/send-message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ recipientId, message })
+            });
+
+            const data = await response.json();
+            document.getElementById('response').innerText = JSON.stringify(data);
+        }
+    </script>
+</body>
+</html>
